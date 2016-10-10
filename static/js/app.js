@@ -1,27 +1,5 @@
-function setDirection(key) {
-    var code = key.keyCode;
 
-    switch (code) {
-        case 38:
-            if (direction !== 'down')
-                direction = 'up';
-            break;
-        case 40:
-            if (direction !== 'up')
-                direction = 'down';
-            break;
-        case 37:
-            if (direction !== 'right')
-                direction = 'left';
-            break;
-        case 39:
-            if (direction !== 'left')
-                direction = 'right';
-            break;
-    }
-}
-
-function fillGridRect(color, x, y){
+function fillGridRect(color, x, y) {
     fillRect(color, x * gridSize, y * gridSize, 10, 10);
 }
 
@@ -76,6 +54,24 @@ function render() {
         x: head.x,
         y: head.y
     };
+    switch (keyCode) {
+        case 38:
+            if (direction !== 'down')
+                direction = 'up';
+            break;
+        case 40:
+            if (direction !== 'up')
+                direction = 'down';
+            break;
+        case 37:
+            if (direction !== 'right')
+                direction = 'left';
+            break;
+        case 39:
+            if (direction !== 'left')
+                direction = 'right';
+            break;
+    }
 
     switch (direction) {
         case 'right':
@@ -151,6 +147,7 @@ var snake = [
         y: 0
     }
 ];
+var keyCode = null;
 var direction = 'right';
 var food = {
     x: null,
@@ -158,7 +155,9 @@ var food = {
 };
 
 //Ataching keyEventListener to var direction
-window.addEventListener('keydown', this.setDirection, false);
+window.addEventListener('keydown', function (key) {
+    keyCode = key.keyCode;
+}, false);
 // Initialize scene
 drawFullSnake();
 // Generate food
