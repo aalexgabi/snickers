@@ -47,28 +47,33 @@ function render() {
     var head = snake[snake.length -1];
     var tail = snake[0];
 
+    var newHead = {
+        x: head.x,
+        y: head.y
+    };
+
     switch (direction) {
         case 'right':
-            var newHead = {
-                x: head.x + 1,
-                y: head.y
-            }
-            snake.push(newHead);
-            snake.shift();
-
-            fillGridRect(red, newHead.x, newHead.y);
-            fillGridRect(white, tail.x, tail.y);
-
+            newHead.x += 1;
             break;
         case 'down':
+            newHead.y += 1;
             break;
         case 'left':
+            newHead.x -= 1;
             break;
         case 'up':
+            newHead.y -= 1;
             break;
         default:
             throw new Error('Bad direction');
     }
+
+    snake.push(newHead);
+    snake.shift();
+
+    fillGridRect(red, newHead.x, newHead.y);
+    fillGridRect(white, tail.x, tail.y);
 
     // TODO: increase speed with each frame
 
