@@ -6,6 +6,13 @@ var renderInterval = 1000;
 var white = "rgb(255,255,255)";
 var red = "rgb(200,0,0)";
 
+function fillGridRect(color, x, y){
+    if (x < 60 && y < 40)
+        fillRect(color, x * 10, y * 10, 10, 10);
+    else
+        throw new Error('Invalid coordianates');
+}
+
 function fillRect(color, x, y, width, height) {
     // Sets the color to fill in the rectangle with
     ctx.fillStyle = color;
@@ -18,7 +25,7 @@ var x = 0;
 function render() {
     // Call itself again to continue rendering according to game speed
     setTimeout(render, renderInterval);
-
+    
     fillRect(red, 10 * x, 10, 10, 10);
     fillRect(white, 10 * (x - 1), 10, 10, 10);
 
