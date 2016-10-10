@@ -1,14 +1,26 @@
 function setDirection(key) {
     var code = key.keyCode;
-    //Up arrow pressed
-    if (code == 38)
-        direction = 'up';
-    else if (code == 37)
-        direction = 'left';
-    else if (code == 39)
-        direction = 'right';
-    else if (code == 40)
-        direction = 'down';
+
+    switch (code) {
+        case 38:
+            if (direction != 'down')
+                direction = 'up';
+            break;
+        case 40:
+            if (direction != 'up')
+                direction = 'down';
+            break;
+        case 37:
+            if (direction != 'right')
+                direction = 'left';
+            break;
+        case 39:
+            if (direction != 'left')
+                direction = 'right';
+            break;
+        default:
+            throw new Error('Key not assigned');
+    }
 }
 
 function fillGridRect(color, x, y){
