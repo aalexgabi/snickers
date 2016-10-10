@@ -37,6 +37,17 @@ function drawFullSnake(){
     })
 };
 
+function doesCollide(head, snake) {
+    for (var i = 0; i < snake.length; i++) {
+        var part = snake[i];
+        if (head.x === part.x && head.y === part.y) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 function render() {
     // Call itself again to continue rendering according to game speed
     setTimeout(render, renderInterval);
@@ -66,6 +77,10 @@ function render() {
             throw new Error('Bad direction');
     }
 
+    if(doesCollide(newHead, snake)){
+        alert('Game Over!');
+    }
+
     snake.push(newHead);
     snake.shift();
 
@@ -80,7 +95,7 @@ function render() {
 var canvas = document.getElementById('mainScene');
 var ctx = canvas.getContext('2d');
 
-var renderInterval = 10;
+var renderInterval = 100;
 var red = "rgb(200,0,0)";
 
 var gridSize = 10;
