@@ -7,10 +7,7 @@ var white = "rgb(255,255,255)";
 var red = "rgb(200,0,0)";
 
 function fillGridRect(color, x, y){
-    if (x < 60 && y < 40)
-        fillRect(color, x * 10, y * 10, 10, 10);
-    else
-        throw new Error('Invalid coordianates');
+    fillRect(color, x * 10, y * 10, 10, 10);
 }
 
 function fillRect(color, x, y, width, height) {
