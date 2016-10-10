@@ -127,24 +127,8 @@ var gridSize = 10;
 var x = 0;
 var snake = [
     {
-        x: 0,
-        y: 0
-    },
-    {
-        x: 1,
-        y: 0
-    },
-    {
-        x: 2,
-        y: 0
-    },
-    {
-        x: 3,
-        y: 0
-    },
-    {
-        x: 4,
-        y: 0
+        x: Math.floor(canvas.width / gridSize / 2),
+        y: Math.floor(canvas.height / gridSize / 2)
     }
 ];
 var keyCode = null;
