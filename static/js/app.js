@@ -21,6 +21,21 @@ function fillRect(color, x, y, width, height) {
 }
 
 var x = 0;
+var snake = [
+    {
+        x: 0,
+        y: 0
+    },
+    {
+        x: 1,
+        y: 0
+    },
+    {
+        x: 2,
+        y: 0
+    }
+];
+var direction = 'right';
 
 function render() {
     // Call itself again to continue rendering according to game speed
@@ -28,6 +43,32 @@ function render() {
     
     fillRect(red, 10 * x, 10, 10, 10);
     fillRect(white, 10 * (x - 1), 10, 10, 10);
+
+    var head = snake[snake.length -1];
+    var tail = snake[0];
+
+    switch (direction) {
+        case 'right':
+            var newHead = {
+                x: head.x + 1,
+                y: head.y
+            }
+            snake.push(newHead);
+            snake.shift();
+
+            fillGridRect(red, newHead.x, newHead.y);
+            fillGridRect(white, tail.x, tail.y);
+
+            break;
+        case 'down':
+            break;
+        case 'left':
+            break;
+        case 'up':
+            break;
+        default:
+            throw new Error('Bad direction');
+    }
 
     // TODO: increase speed with each frame
 
