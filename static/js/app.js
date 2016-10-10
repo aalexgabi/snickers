@@ -1,7 +1,7 @@
 var canvas = document.getElementById('mainScene');
 var ctx = canvas.getContext('2d');
 
-var renderInterval = 1000;
+var renderInterval = 100;
 
 var white = "rgb(255,255,255)";
 var red = "rgb(200,0,0)";
@@ -20,11 +20,11 @@ function setDirection(key) {
 }
 
 function fillGridRect(color, x, y){
-    fillRect(color, x * 10, y * 10, 10, 10);
+    fillRect(color, x * gridSize, y * gridSize, 10, 10);
 }
 
 function clearGridRect(x, y){
-    clearRect(x * 10, y * 10, 10, 10);
+    clearRect(x * gridSize, y * gridSize, 10, 10);
 }
 
 function fillRect(color, x, y, width, height) {
@@ -45,6 +45,7 @@ function drawFullSnake(){
     })
 };
 
+var gridSize = 10;
 var x = 0;
 var snake = [
     {
@@ -57,6 +58,14 @@ var snake = [
     },
     {
         x: 2,
+        y: 0
+    },
+    {
+        x: 3,
+        y: 0
+    },
+    {
+        x: 4,
         y: 0
     }
 ];
@@ -76,16 +85,16 @@ function render() {
 
     switch (direction) {
         case 'right':
-            newHead.x += 1;
+            newHead.x = (canvas.width / gridSize + newHead.x + 1) % (canvas.width / gridSize);
             break;
         case 'down':
-            newHead.y += 1;
+            newHead.y = (canvas.height / gridSize + newHead.y + 1) % (canvas.height / gridSize);
             break;
         case 'left':
-            newHead.x -= 1;
+            newHead.x = (canvas.width / gridSize + newHead.x - 1) % (canvas.width / gridSize);
             break;
         case 'up':
-            newHead.y -= 1;
+            newHead.y = (canvas.height / gridSize + newHead.y - 1) % (canvas.height / gridSize);
             break;
         default:
             throw new Error('Bad direction');
