@@ -3,19 +3,19 @@ function setDirection(key) {
 
     switch (code) {
         case 38:
-            if (direction != 'down')
+            if (direction !== 'down')
                 direction = 'up';
             break;
         case 40:
-            if (direction != 'up')
+            if (direction !== 'up')
                 direction = 'down';
             break;
         case 37:
-            if (direction != 'right')
+            if (direction !== 'right')
                 direction = 'left';
             break;
         case 39:
-            if (direction != 'left')
+            if (direction !== 'left')
                 direction = 'right';
             break;
     }
@@ -94,12 +94,16 @@ function render() {
             throw new Error('Bad direction');
     }
 
-    if(doesCollide(newHead, snake)){
+    if(doesCollide(newHead, snake)) {
         return gameOver();
     }
 
     snake.push(newHead);
-    snake.shift();
+    if (newHead.x === food.x && newHead.y === food.y) {
+        generateFood();
+    } else {
+        snake.shift();
+    }
 
     fillGridRect(red, newHead.x, newHead.y);
     clearGridRect(tail.x, tail.y)
