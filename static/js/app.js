@@ -20,6 +20,12 @@ function fillRect(color, x, y, width, height) {
     ctx.fillRect(x , y, width, height);
 }
 
+function drawFullSnake(){
+    snake.forEach(function(snakePart){
+        fillGridRect(red, snakePart.x, snakePart.y);
+    })
+};
+
 var x = 0;
 var snake = [
     {
@@ -41,9 +47,6 @@ function render() {
     // Call itself again to continue rendering according to game speed
     setTimeout(render, renderInterval);
     
-    fillRect(red, 10 * x, 10, 10, 10);
-    fillRect(white, 10 * (x - 1), 10, 10, 10);
-
     var head = snake[snake.length -1];
     var tail = snake[0];
 
@@ -75,5 +78,7 @@ function render() {
     x++;
 }
 
+// Initialize scene
+drawFullSnake();
 // Render first frame
 render();
