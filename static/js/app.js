@@ -10,11 +10,20 @@ function fillGridRect(color, x, y){
     fillRect(color, x * 10, y * 10, 10, 10);
 }
 
+function clearGridRect(x, y){
+    clearRect(x * 10, y * 10, 10, 10);
+}
+
 function fillRect(color, x, y, width, height) {
     // Sets the color to fill in the rectangle with
     ctx.fillStyle = color;
     // Creates fill
     ctx.fillRect(x , y, width, height);
+}
+
+function clearRect(x, y, width, height) {
+    // Clear rectangle
+    ctx.clearRect(x , y, width, height);
 }
 
 function drawFullSnake(){
@@ -73,7 +82,7 @@ function render() {
     snake.shift();
 
     fillGridRect(red, newHead.x, newHead.y);
-    fillGridRect(white, tail.x, tail.y);
+    clearGridRect(tail.x, tail.y)
 
     // TODO: increase speed with each frame
 
