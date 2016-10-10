@@ -112,7 +112,7 @@ function render() {
 var canvas = document.getElementById('mainScene');
 var ctx = canvas.getContext('2d');
 
-var renderInterval = 100;
+var renderInterval = 50;
 var renderTimeout = null;
 var red = "rgb(200,0,0)";
 
