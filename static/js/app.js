@@ -109,6 +109,13 @@ function render() {
     x++;
 }
 
+function generateFood(){
+    food.x = Math.floor(Math.random() * canvas.width / gridSize);
+    food.y = Math.floor(Math.random() * canvas.height / gridSize);
+
+    fillGridRect(red, food.x, food.y);
+}
+
 var canvas = document.getElementById('mainScene');
 var ctx = canvas.getContext('2d');
 
@@ -141,10 +148,16 @@ var snake = [
     }
 ];
 var direction = 'right';
+var food = {
+    x: null,
+    y: null
+};
 
 //Ataching keyEventListener to var direction
 window.addEventListener('keydown', this.setDirection, false);
 // Initialize scene
 drawFullSnake();
+// Generate food
+generateFood();
 // Render first frame
 render();
