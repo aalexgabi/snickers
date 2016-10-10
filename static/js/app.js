@@ -6,6 +6,19 @@ var renderInterval = 1000;
 var white = "rgb(255,255,255)";
 var red = "rgb(200,0,0)";
 
+function setDirection(key) {
+    var code = key.keyCode;
+    //Up arrow pressed
+    if (code == 38)
+        direction = 'up';
+    else if (code == 37)
+        direction = 'left';
+    else if (code == 39)
+        direction = 'right';
+    else if (code == 40)
+        direction = 'down';
+}
+
 function fillGridRect(color, x, y){
     fillRect(color, x * 10, y * 10, 10, 10);
 }
@@ -88,7 +101,8 @@ function render() {
 
     x++;
 }
-
+//Ataching keyEventListener to var direction
+window.addEventListener('keydown', this.setDirection, false);
 // Initialize scene
 drawFullSnake();
 // Render first frame
