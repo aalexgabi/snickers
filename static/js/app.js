@@ -18,8 +18,6 @@ function setDirection(key) {
             if (direction != 'left')
                 direction = 'right';
             break;
-        default:
-            throw new Error('Key not assigned');
     }
 }
 
@@ -60,9 +58,16 @@ function doesCollide(head, snake) {
     return false;
 }
 
+function gameOver() {
+    clearTimeout(renderTimeout);
+    clearRect(0, 0, canvas.width, canvas.height);
+    ctx.font = "48px mono";
+    ctx.fillText('Game Over!', canvas.width / 2 - 150, canvas.height / 2 - 25)
+}
+
 function render() {
     // Call itself again to continue rendering according to game speed
-    setTimeout(render, renderInterval);
+    renderTimeout = setTimeout(render, renderInterval);
     
     var head = snake[snake.length -1];
     var tail = snake[0];
@@ -90,7 +95,7 @@ function render() {
     }
 
     if(doesCollide(newHead, snake)){
-        alert('Game Over!');
+        return gameOver();
     }
 
     snake.push(newHead);
@@ -108,6 +113,7 @@ var canvas = document.getElementById('mainScene');
 var ctx = canvas.getContext('2d');
 
 var renderInterval = 100;
+var renderTimeout = null;
 var red = "rgb(200,0,0)";
 
 var gridSize = 10;
