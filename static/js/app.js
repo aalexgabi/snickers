@@ -1,11 +1,3 @@
-var canvas = document.getElementById('mainScene');
-var ctx = canvas.getContext('2d');
-
-var renderInterval = 100;
-
-var white = "rgb(255,255,255)";
-var red = "rgb(200,0,0)";
-
 function setDirection(key) {
     var code = key.keyCode;
     //Up arrow pressed
@@ -44,32 +36,6 @@ function drawFullSnake(){
         fillGridRect(red, snakePart.x, snakePart.y);
     })
 };
-
-var gridSize = 10;
-var x = 0;
-var snake = [
-    {
-        x: 0,
-        y: 0
-    },
-    {
-        x: 1,
-        y: 0
-    },
-    {
-        x: 2,
-        y: 0
-    },
-    {
-        x: 3,
-        y: 0
-    },
-    {
-        x: 4,
-        y: 0
-    }
-];
-var direction = 'right';
 
 function render() {
     // Call itself again to continue rendering according to game speed
@@ -110,6 +76,39 @@ function render() {
 
     x++;
 }
+
+var canvas = document.getElementById('mainScene');
+var ctx = canvas.getContext('2d');
+
+var renderInterval = 10;
+var red = "rgb(200,0,0)";
+
+var gridSize = 10;
+var x = 0;
+var snake = [
+    {
+        x: 0,
+        y: 0
+    },
+    {
+        x: 1,
+        y: 0
+    },
+    {
+        x: 2,
+        y: 0
+    },
+    {
+        x: 3,
+        y: 0
+    },
+    {
+        x: 4,
+        y: 0
+    }
+];
+var direction = 'right';
+
 //Ataching keyEventListener to var direction
 window.addEventListener('keydown', this.setDirection, false);
 // Initialize scene
